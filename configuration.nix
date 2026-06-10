@@ -11,8 +11,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
 
-
-  
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -27,13 +25,13 @@
   programs.gamemode.enable = true;
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
- 
+
   hardware.nvidia.prime = {
     sync.enable = true;
 
     # integrated
     # amdgpuBusId = "PCI:6:0:0"
-     intelBusId = "PCI:0:2:0";
+    intelBusId = "PCI:0:2:0";
 
     # dedicated
     nvidiaBusId = "PCI:1:0:0";
@@ -47,12 +45,12 @@
 
 
 
-   networking.hostName = "HoMM3Box"; # Define your hostname.
+  networking.hostName = "HoMM3Box"; # Define your hostname.
 
 
   networking.networkmanager.enable = true;
 
-   time.timeZone = "Europe/Warsaw";
+  time.timeZone = "Europe/Warsaw";
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -60,8 +58,8 @@
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
-package = config.boot.kernelPackages.nvidiaPackages.stable;
-};
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -74,15 +72,15 @@ package = config.boot.kernelPackages.nvidiaPackages.stable;
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
-    
+
   services.upower = {
     allowRiskyCriticalPowerAction = true;
     enable = true;
-    };
+  };
 
   environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
 
-# Portals
+  # Portals
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -115,12 +113,12 @@ package = config.boot.kernelPackages.nvidiaPackages.stable;
   services.displayManager = {
     sddm.enable = false;
     ly.enable = true;
-    };
+  };
 
   services.desktopManager = {
     plasma6.enable = true;
     plasma6.enableQt5Integration = true;
-    };
+  };
 
 
   services.xserver = {
@@ -128,9 +126,9 @@ package = config.boot.kernelPackages.nvidiaPackages.stable;
     autoRepeatDelay = 200;
     autoRepeatInterval = 35;
     windowManager.qtile.enable = true;
-    };
+  };
 
-    users.users.phantasm = {
+  users.users.phantasm = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     packages = with pkgs; [
@@ -165,13 +163,13 @@ package = config.boot.kernelPackages.nvidiaPackages.stable;
   #   ];
   # };
 
-   programs.firefox.enable = true;
-   services.flatpak.enable = true;
-   programs.thunderbird.enable = true;
+  programs.firefox.enable = true;
+  services.flatpak.enable = true;
+  programs.thunderbird.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     vim
     wget
     alacritty
@@ -184,15 +182,15 @@ environment.systemPackages = with pkgs; [
     protonup-ng
   ];
 
-    fonts.packages = with pkgs; [
+  fonts.packages = with pkgs; [
      nerd-fonts.fira-code
      nerd-fonts.droid-sans-mono
      nerd-fonts.jetbrains-mono
      nerd-fonts.iosevka
-      ];
-fonts.fontDir.enable = true;
+  ];
+  fonts.fontDir.enable = true;
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -238,4 +236,3 @@ fonts.fontDir.enable = true;
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-
